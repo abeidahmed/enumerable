@@ -1,3 +1,5 @@
+# rubocop:disable all
+
 require 'pry'
 require_relative 'lib/enumerable'
 
@@ -56,3 +58,5 @@ longest = %w[ant bear cat].my_inject do |memo, word|
   memo.length > word.length ? memo : word
 end
 puts longest #=> "bear"
+
+# rubocop:enable all
