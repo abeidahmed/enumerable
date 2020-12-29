@@ -55,4 +55,16 @@ module Enumerable
 
     arr
   end
+
+  def my_any?(arg = nil, &block)
+    if arg
+      my_each { |ele| return true if arg === ele } # rubocop:disable Style/CaseEquality
+    elsif block_given?
+      my_each { |ele| return true if yield(ele) }
+    else
+      my_each { |ele| return true if ele }
+    end
+
+    false
+  end
 end

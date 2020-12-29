@@ -30,3 +30,12 @@ puts "\n"
 puts '--- my_map ---'
 p char_arr.my_map { |x| x * 2 } #=> ["aa", "bb", "cc", "dd", "ee", "ff"]
 puts "\n"
+
+puts '--- my_any? ---'
+p word_arr.my_any? { |word| word.length >= 3 } #=> true
+p word_arr.my_any? { |word| word.length >= 4 } #=> true
+p word_arr.my_any?(/d/)                        #=> false
+p [nil, true, 99].my_any?(Integer)             #=> true
+p [nil, true, 99].my_any?                      #=> true
+p [].my_any?                                   #=> false
+puts "\n"
