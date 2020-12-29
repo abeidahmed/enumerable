@@ -21,4 +21,14 @@ module Enumerable
 
     self
   end
+
+  def my_select
+    arr = []
+
+    my_each do |n|
+      arr << n if yield(n)
+    end
+
+    arr
+  end
 end
