@@ -59,3 +59,9 @@ p my_count_arr.my_count                #=> 4
 p my_count_arr.my_count(2)             #=> 2
 p my_count_arr.my_count{ |x| x.even? } #=> 3
 puts "\n"
+
+puts '--- my_inject ---'
+p (5..10).my_inject { |sum, n| sum + n }                                      #=> 45
+p (5..10).my_inject(1) { |product, n| product * n }                           #=> 151200
+p [2, 4, 5].my_inject(1) { |r, i| r * i }                                     #=> 40
+p word_arr.my_inject { |memo, word| memo.length > word.length ? memo : word } #=> "bear"

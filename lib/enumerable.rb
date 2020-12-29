@@ -85,4 +85,11 @@ module Enumerable
 
     count
   end
+
+  def my_inject(*args)
+    init = args.size.positive?
+    memo = init ? args.first : self.to_a.first
+    drop(init ? 0 : 1).my_each { |ele| memo = yield(memo, ele) }
+    memo
+  end
 end
