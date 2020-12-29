@@ -43,4 +43,16 @@ module Enumerable
 
     true
   end
+
+  def my_map(proc = nil)
+    arr = []
+
+    if proc
+      my_each { |ele| arr << proc.call(ele) }
+    else
+      my_each { |ele| arr << yield(ele) }
+    end
+
+    arr
+  end
 end
