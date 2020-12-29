@@ -2,7 +2,7 @@ module Enumerable
   def my_each
     idx = 0
 
-    arr ||= self.to_a
+    arr ||= to_a
     while idx < arr.length
       yield(arr[idx])
       idx += 1
@@ -14,7 +14,7 @@ module Enumerable
   def my_each_with_index
     idx = 0
 
-    while idx < self.length
+    while idx < length
       yield(self[idx], idx)
       idx += 1
     end
@@ -32,7 +32,7 @@ module Enumerable
     arr
   end
 
-  def my_all?(arg = nil, &block)
+  def my_all?(arg = nil)
     if arg
       my_each { |ele| return false unless arg === ele } # rubocop:disable Style/CaseEquality
     elsif block_given?
@@ -56,7 +56,7 @@ module Enumerable
     arr
   end
 
-  def my_any?(arg = nil, &block)
+  def my_any?(arg = nil)
     if arg
       my_each { |ele| return true if arg === ele } # rubocop:disable Style/CaseEquality
     elsif block_given?
@@ -80,7 +80,7 @@ module Enumerable
     elsif arg
       my_each { |ele| count += 1 if ele == arg }
     else
-      count = self.size
+      count = size
     end
 
     count
@@ -88,7 +88,7 @@ module Enumerable
 
   def my_inject(*args)
     init = args.size.positive?
-    memo = init ? args.first : self.to_a.first
+    memo = init ? args.first : to_a.first
     drop(init ? 0 : 1).my_each { |ele| memo = yield(memo, ele) }
     memo
   end
