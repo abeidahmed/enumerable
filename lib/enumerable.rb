@@ -31,4 +31,16 @@ module Enumerable
 
     arr
   end
+
+  def my_all?(arg = nil, &block)
+    if arg
+      my_each { |ele| return false unless arg === ele } # rubocop:disable Style/CaseEquality
+    elsif block_given?
+      my_each { |ele| return false unless yield(ele) }
+    else
+      my_each { |ele| return false unless ele }
+    end
+
+    true
+  end
 end
