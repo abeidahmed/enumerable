@@ -1,71 +1,58 @@
 require 'pry'
 require_relative 'lib/enumerable'
 
-char_arr = %w[a b c d e f]
-word_arr = %w[ant bear cat]
-num_arr = [1, 2, 3, 4, 5]
+puts '1.--------my_each--------'
+%w[Sharon Leo Leila Brian Arun].my_each { |friend| puts friend }
 
-# rubycop:disable Lint/ParenthesesAsGroupedExpression
+puts '2.--------my_each_with_index--------'
+%w[Sharon Leo Leila Brian Arun].my_each_with_index { |friend, index| puts friend if index.even? }
 
-puts '--- my_each ---'
-char_arr.my_each { |x| print x, ' -- ' } #=> a -- b -- c -- d -- e -- f --
-puts "\n"
+puts '3.--------my_select--------'
+puts (%w[Sharon Leo Leila Brian Arun].my_select { |friend| friend != 'Brian' })
 
-puts '--- my_each_with_index ---'
-char_arr.my_each_with_index { |_x, i| print i, ' -- ' } #=> 0 -- 1 -- 2 -- 3 -- 4 -- 5 --
-puts "\n"
+puts '4.--------my_all--------'
+puts (%w[ant bear cat].my_all? { |word| word.length >= 3 }) #=> true
+puts (%w[ant bear cat].my_all? { |word| word.length >= 4 }) #=> false
+puts %w[ant bear cat].my_all?(/t/) #=> false
+puts [1, 2i, 3.14].my_all?(Numeric) #=> true
+puts [].my_all? #=> true
 
-puts '--- my_select ---'
-p num_arr.my_select(&:even?) #=> [2, 4]
-p char_arr.my_select { |v| v =~ /[aeiou]/ } #=> ["a", "e"]
-puts "\n"
+puts '5.--------my_any--------'
+puts (%w[ant bear cat].my_any? { |word| word.length >= 3 }) #=> true
+puts (%w[ant bear cat].my_any? { |word| word.length >= 4 }) #=> true
+puts %w[ant bear cat].my_any?(/d/) #=> false
+puts [nil, true, 99].my_any?(Integer) #=> true
+puts [nil, true, 99].my_any? #=> true
+puts [].my_any? #=> false
 
-puts '--- my_all? ---'
-p word_arr.my_all? { |word| word.length >= 3 } #=> true
-p word_arr.my_all? { |word| word.length >= 4 } #=> false
-p word_arr.my_all?(/t/) #=> false
-p [1, 2i, 3.14].my_all?(Numeric) #=> true
-p [nil, true, 99].my_all? #=> false
-p [].my_all? #=> true
-puts "\n"
+puts '6.--------my_none--------'
+puts (%w[ant bear cat].my_none? { |word| word.length == 5 }) #=> true
+puts (%w[ant bear cat].my_none? { |word| word.length >= 4 }) #=> false
+puts %w[ant bear cat].my_none?(/d/) #=> true
+puts [1, 3.14, 42].my_none?(Float) #=> false
+puts [].my_none? #=> true
+puts [nil].my_none? #=> true
+puts [nil, false].my_none? #=> true
+puts [nil, false, true].my_none? #=> false
 
-puts '--- my_map ---'
-p char_arr.my_map { |x| x * 2 } #=> ["aa", "bb", "cc", "dd", "ee", "ff"]
-p (1..4).my_map { |i| i * i } #=> [1, 4, 9, 16]
-p [2, 4, 8].my_map { |i| i * i } #=> [4, 16, 64]
-puts "\n"
+puts '7.--------my_count--------'
+arr = [1, 2, 4, 2]
+puts arr.my_count #=> 4
+puts arr.my_count(2) #=> 2
+puts (arr.my_count { |x| (x % 2).zero? }) #=> 3
 
-puts '--- my_any? ---'
-p word_arr.my_any? { |word| word.length >= 3 } #=> true
-p word_arr.my_any? { |word| word.length >= 4 } #=> true
-p word_arr.my_any?(/d/) #=> false
-p [nil, true, 99].my_any?(Integer) #=> true
-p [nil, true, 99].my_any? #=> true
-p [].my_any? #=> false
-puts "\n"
+puts '8.--------my_maps--------'
+my_order = ['medium Big Mac', 'medium fries', 'medium milkshake']
+puts (my_order.my_map { |item| item.gsub('medium', 'extra large') })
+puts ((0..5).my_map { |i| i * i })
+puts 'my_map_proc'
+my_proc = proc { |i| i * i }
+puts (1..5).my_map(my_proc) { |i| i + i }
 
-puts '--- my_none? ---'
-p word_arr.my_none? { |word| word.length == 5 } #=> true
-p word_arr.my_none? { |word| word.length >= 4 } #=> false
-p word_arr.my_none?(/d/) #=> true
-p [1, 3.14, 42].my_none?(Float) #=> false
-p [].my_none? #=> true
-p [nil].my_none? #=> true
-p [nil, false].my_none? #=> true
-p [nil, false, true].my_none? #=> false
-puts "\n"
-
-puts '--- my_count ---'
-my_count_arr = [1, 2, 4, 2]
-p my_count_arr.my_count #=> 4
-p my_count_arr.my_count(2) #=> 2
-p my_count_arr.my_count(&:even?) #=> 3
-puts "\n"
-
-puts '--- my_inject ---'
-p (5..10).my_inject { |sum, n| sum + n } #=> 45
-p (5..10).my_inject(1) { |product, n| product * n } #=> 151200
-p [2, 4, 5].my_inject(1) { |r, i| r * i } #=> 40
-p word_arr.my_inject { |memo, word| memo.length > word.length ? memo : word } #=> "bear"
-
-# rubycop:enable Lint/ParenthesesAsGroupedExpression
+puts '9.--------my_inject--------'
+puts ((1..5).my_inject { |sum, n| sum + n }) #=> 15
+puts (1..5).my_inject(1) { |product, n| product * n } #=> 120
+longest = %w[ant bear cat].my_inject do |memo, word|
+  memo.length > word.length ? memo : word
+end
+puts longest #=> "bear"
