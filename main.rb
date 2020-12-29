@@ -50,3 +50,10 @@ p [nil].my_none?                                #=> true
 p [nil, false].my_none?                         #=> true
 p [nil, false, true].my_none?                   #=> false
 puts "\n"
+
+puts '--- my_count ---'
+my_count_arr = [1, 2, 4, 2]
+p my_count_arr.my_count                #=> 4
+p my_count_arr.my_count(2)             #=> 2
+p my_count_arr.my_count{ |x| x.even? } #=> 3
+puts "\n"

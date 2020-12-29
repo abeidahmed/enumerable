@@ -71,4 +71,18 @@ module Enumerable
   def my_none?(arg = nil, &block)
     !my_any?(arg, &block)
   end
+
+  def my_count(arg = nil)
+    count = 0
+
+    if block_given?
+      my_each { |ele| count += 1 if yield(ele) }
+    elsif arg
+      my_each { |ele| count += 1 if ele == arg }
+    else
+      count = self.size
+    end
+
+    count
+  end
 end
