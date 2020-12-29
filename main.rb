@@ -28,7 +28,9 @@ p [].my_all?                                   #=> true
 puts "\n"
 
 puts '--- my_map ---'
-p char_arr.my_map { |x| x * 2 } #=> ["aa", "bb", "cc", "dd", "ee", "ff"]
+p char_arr.my_map { |x| x * 2 }  #=> ["aa", "bb", "cc", "dd", "ee", "ff"]
+p (1..4).my_map { |i| i * i }    #=> [1, 4, 9, 16]
+p [2, 4, 8].my_map { |i| i * i } #=> [4, 16, 64]
 puts "\n"
 
 puts '--- my_any? ---'
