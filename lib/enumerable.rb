@@ -67,4 +67,8 @@ module Enumerable
 
     false
   end
+
+  def my_none?(arg = nil, &block)
+    !my_any?(arg, &block)
+  end
 end
