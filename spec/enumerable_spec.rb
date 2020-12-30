@@ -102,4 +102,18 @@ RSpec.describe Enumerable do
       expect([1, 3.14, 42].my_none?(Float)).to be_falsy
     end
   end
+
+  describe "my_count" do
+    it "should return the result when no block or arg is passed" do
+      expect([1, 2, 3].my_count).to eq(3)
+    end
+
+    it "should return the result when arg is passed" do
+      expect([1, 2, 3, 2].my_count(2)).to eq(2)
+    end
+
+    it "should return the result when block is passed" do
+      expect([1, 2, 3].my_count(&:even?)).to eq(1)
+    end
+  end
 end
