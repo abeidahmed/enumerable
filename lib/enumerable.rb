@@ -1,5 +1,7 @@
 module Enumerable
   def my_each
+    return enum_for unless block_given?
+
     idx = 0
 
     arr ||= to_a
@@ -12,6 +14,8 @@ module Enumerable
   end
 
   def my_each_with_index
+    return enum_for unless block_given?
+
     idx = 0
 
     while idx < length
@@ -23,6 +27,8 @@ module Enumerable
   end
 
   def my_select
+    return enum_for unless block_given?
+
     arr = []
 
     my_each do |n|
@@ -45,6 +51,8 @@ module Enumerable
   end
 
   def my_map(proc = nil)
+    return enum_for unless block_given?
+
     arr = []
 
     if proc
