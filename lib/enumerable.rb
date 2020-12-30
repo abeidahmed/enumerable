@@ -32,9 +32,7 @@ module Enumerable
 
     arr = []
 
-    my_each do |n|
-      arr << n if yield(n)
-    end
+    my_each { |n| arr << n if yield(n) }
 
     arr
   end

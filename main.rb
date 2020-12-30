@@ -8,7 +8,9 @@ p %w[Sharon Leo Leila Brian Arun].my_each { |friend| puts friend }
 p (1..5).my_each # with_no_block
 
 puts '2.--------my_each_with_index--------'
-p %w[Sharon Leo Leila Brian Arun].my_each_with_index { |friend, index| puts friend if index.even? }
+p %w[Sharon Leo Leila Brian Arun].my_each_with_index { |friend, index|
+    puts friend if index.even?
+  }
 p (1..5).my_each_with_index # with_no_block_given
 
 puts '3.--------my_select--------'
@@ -57,9 +59,10 @@ puts '9.--------my_inject--------'
 puts ((1..5).my_inject { |sum, n| sum + n }) #=> 15
 puts (1..5).my_inject(1) { |product, n| product * n } #=> 120
 puts (1..5).my_inject(1, :+) #=> 16
-longest = %w[ant bear cat].my_inject do |memo, word|
-  memo.length > word.length ? memo : word
-end
+longest =
+  %w[ant bear cat].my_inject do |memo, word|
+    memo.length > word.length ? memo : word
+  end
 puts longest #=> "bear"
 
 puts multiply_els([2, 4, 5]) #=> 40
