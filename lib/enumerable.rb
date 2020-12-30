@@ -18,8 +18,9 @@ module Enumerable
 
     idx = 0
 
-    while idx < length
-      yield(self[idx], idx)
+    arr ||= to_a
+    while idx < arr.length
+      yield(arr[idx], idx)
       idx += 1
     end
 
