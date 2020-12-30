@@ -62,10 +62,6 @@ longest = %w[ant bear cat].my_inject do |memo, word|
 end
 puts longest #=> "bear"
 
-def multiply_els(arr)
-  arr.inject(:*)
-end
-
 puts multiply_els([2, 4, 5]) #=> 40
 
 # rubocop:enable all
