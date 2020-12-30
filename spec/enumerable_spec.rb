@@ -137,6 +137,32 @@ RSpec.describe Enumerable do
       expect((1..3).my_map(test_proc) { |i| i + i } ).to match_array([1, 4, 9])
     end
   end
+
+  describe "#my_inject" do
+    it "should work with blocks" do
+      expect((1..5).my_inject { |sum, n| sum + n }).to eq(15)
+    end
+
+    it "should work with a combination of block and arg" do
+      expect((1..5).my_inject(1) { |product, n| product * n }).to eq(120)
+    end
+
+    it "should work with initial value and symbol passed as an arg" do
+      expect((1..5).my_inject(1, :+)).to eq(16)
+    end
+
+    it "should work with block" do
+      longest = %w[ant bear cat].my_inject do |memo, word|
+        memo.length > word.length ? memo : word
+      end
+
+      expect(longest).to eq("bear")
+    end
+
+    it "should work with the given multiply_els method" do
+      expect(multiply_els([2, 4, 5])).to eq(40)
+    end
+  end
 end
 
 # rubocop:enable all
