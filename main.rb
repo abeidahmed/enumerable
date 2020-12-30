@@ -56,9 +56,16 @@ puts (1..5).my_map(my_proc) { |i| i + i }
 puts '9.--------my_inject--------'
 puts ((1..5).my_inject { |sum, n| sum + n }) #=> 15
 puts (1..5).my_inject(1) { |product, n| product * n } #=> 120
+puts (1..5).my_inject(1, :+) #=> 16
 longest = %w[ant bear cat].my_inject do |memo, word|
   memo.length > word.length ? memo : word
 end
 puts longest #=> "bear"
+
+def multiply_els(arr)
+  arr.inject(:*)
+end
+
+puts multiply_els([2, 4, 5]) #=> 40
 
 # rubocop:enable all
