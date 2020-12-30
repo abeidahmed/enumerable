@@ -49,7 +49,7 @@ RSpec.describe Enumerable do
     end
   end
 
-  describe "#my_all" do
+  describe "#my_all?" do
     it "should work with an empty array" do
       expect([].my_all?).to be_truthy
     end
@@ -68,6 +68,20 @@ RSpec.describe Enumerable do
 
     it "should return false if some of the criterias do not match with an arg" do
       expect(%w[ant bear cat].my_all?(/t/)).to be_falsy
+    end
+  end
+
+  describe "#my_any?" do
+    it "should work with an empty array" do
+      expect([].my_any?).to be_falsy
+    end
+
+    it "should return true if some of the criterias match in a block" do
+      expect(string_arr.my_any? { |ele| ele.length > 1 }).to be_truthy
+    end
+
+    it "should return false if none of the elements match with an arg" do
+      expect(%w[any bear cale].my_any?(/t/)).to be_falsy
     end
   end
 end
