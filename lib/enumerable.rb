@@ -94,7 +94,7 @@ module Enumerable
     count
   end
 
-  # rubocop:disable Metrics/CyclomaticComplexity
+  # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 
   def my_inject(arg = nil, sym = nil)
     if (arg && sym.nil?) && (arg.is_a?(Symbol) || arg.is_a?(String))
@@ -111,5 +111,5 @@ module Enumerable
     arg
   end
 
-  # rubocop:enable Metrics/CyclomaticComplexity
+  # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 end
