@@ -18,6 +18,25 @@ RSpec.describe Enumerable do
     it "should iterate a string array and return the same array" do
       expect(string_arr.my_each { |ele| ele }).to match_array(string_arr)
     end
+
+    it "should return an Enumerable if no block is given" do
+      expect(arr.my_each).to be_a(Enumerable)
+    end
+  end
+
+  describe "#my_each_with_index" do
+    it "should iterate over elements and return the result" do
+      empty_arr = []
+      string_arr.my_each_with_index do |name, idx|
+        empty_arr << name if idx.even?
+      end
+
+      expect(empty_arr).to match_array(%w[john man])
+    end
+
+    it "should return an Enumerable if no block is given" do
+      expect(arr.my_each_with_index).to be_a(Enumerable)
+    end
   end
 
   describe "#my_select" do
