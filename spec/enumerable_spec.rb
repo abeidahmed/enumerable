@@ -1,3 +1,5 @@
+# rubocop:disable all
+
 require 'rspec'
 require_relative '../lib/enumerable'
 
@@ -32,6 +34,10 @@ RSpec.describe Enumerable do
       end
 
       expect(empty_arr).to match_array(%w[john man])
+    end
+
+    it "should work with ranges" do
+      expect((1..3).my_each_with_index { |num, idx| idx }).to match_array([1, 2, 3])
     end
 
     it "should return an Enumerable if no block is given" do
@@ -132,3 +138,5 @@ RSpec.describe Enumerable do
     end
   end
 end
+
+# rubocop:enable all
