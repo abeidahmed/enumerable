@@ -10,7 +10,7 @@ module Enumerable
       idx += 1
     end
 
-    arr
+    self
   end
 
   def my_each_with_index

@@ -21,6 +21,11 @@ RSpec.describe Enumerable do
       expect(string_arr.my_each { |ele| ele }).to match_array(string_arr)
     end
 
+    it "should return range when block is not given" do
+      block = proc { |i| i }
+      expect(range.my_each(&block)).to eq(range.each(&block))
+    end
+
     it "should return an Enumerable if no block is given" do
       expect(arr.my_each).to be_a(Enumerable)
     end
