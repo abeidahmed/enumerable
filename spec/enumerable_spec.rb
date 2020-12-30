@@ -48,4 +48,26 @@ RSpec.describe Enumerable do
       expect(arr.my_select).to be_a(Enumerable)
     end
   end
+
+  describe "#my_all" do
+    it "should work with an empty array" do
+      expect([].my_all?).to be_truthy
+    end
+
+    it "should return true if all the criterias match in a block" do
+      expect(string_arr.my_all? { |ele| ele.length > 1 }).to be_truthy
+    end
+
+    it "should return true if all the criterias match with an arg" do
+      expect([1, 2i, 3.14].my_all?(Numeric)).to be_truthy
+    end
+
+    it "should return false if some of the criterias do not match in a block" do
+      expect(string_arr.my_all? { |ele| ele.length > 3 }).to be_falsy
+    end
+
+    it "should return false if some of the criterias do not match with an arg" do
+      expect(%w[ant bear cat].my_all?(/t/)).to be_falsy
+    end
+  end
 end
