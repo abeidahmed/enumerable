@@ -116,4 +116,19 @@ RSpec.describe Enumerable do
       expect([1, 2, 3].my_count(&:even?)).to eq(1)
     end
   end
+
+  describe "#my_map" do
+    it "should return an Enumerable if no block is given" do
+      expect(arr.my_map).to be_a(Enumerable)
+    end
+
+    it "should work with ranges" do
+      expect((1..3).my_map { |i| i * i }).to match_array([1, 4, 9])
+    end
+
+    it "should work with proc" do
+      test_proc = proc { |i| i * i }
+      expect((1..3).my_map(test_proc) { |i| i + i } ).to match_array([1, 4, 9])
+    end
+  end
 end
