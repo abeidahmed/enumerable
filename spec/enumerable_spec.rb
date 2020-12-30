@@ -84,4 +84,22 @@ RSpec.describe Enumerable do
       expect(%w[any bear cale].my_any?(/t/)).to be_falsy
     end
   end
+
+  describe "#my_none?" do
+    it "should return true when none of the criterias match with the arg" do
+      expect(%w[any bear cale].my_none?(/t/)).to be_truthy
+    end
+
+    it "should return true if none of the criterias match in a block" do
+      expect(string_arr.my_none? { |ele| ele.length > 10 }).to be_truthy
+    end
+
+    it "should filter out the nil values" do
+      expect([nil].my_none?).to be_truthy
+    end
+
+    it "should work with classes as an arg" do
+      expect([1, 3.14, 42].my_none?(Float)).to be_falsy
+    end
+  end
 end
