@@ -1,7 +1,7 @@
 AllCops:
   Exclude:
-    - Guardfile
-    - Rakefile
+    - 'Guardfile'
+    - 'Rakefile'
 
   DisplayCopNames: true
 

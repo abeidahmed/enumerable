@@ -1,5 +1,3 @@
-# rubocop:disable all
-
 require 'rspec'
 require_relative '../lib/enumerable'
 
@@ -45,15 +43,15 @@ RSpec.describe Enumerable do
     end
 
     it 'should work with ranges' do
-      expect(range.my_each_with_index { |num, idx| idx }).to match_array(
-        [1, 2, 3],
+      expect(range.my_each_with_index { |_num, idx| idx }).to match_array(
+        [1, 2, 3]
       )
     end
 
     it 'should return self when block is not given' do
       block = proc { |i| i }
       expect(range.my_each_with_index(&block)).to eq(
-        range.each_with_index(&block),
+        range.each_with_index(&block)
       )
     end
 
@@ -196,5 +194,3 @@ RSpec.describe Enumerable do
     end
   end
 end
-
-# rubocop:enable all
