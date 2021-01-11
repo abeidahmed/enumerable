@@ -28,6 +28,12 @@ To get a local copy up and running follow these simple example steps.
 - `git pull origin enumerable-feature`
 - Run `ruby main.rb`
 
+## Test
+
+- Clone the repository using the above instructions.
+- Run `bundle exec guard` to automatically run the spec on file changes, or
+- Run `bundle exec rspec spec/enumerable_spec` to run the spec once.
+
 ## Authors
 
 👤 **abeidahmed**
@@ -36,11 +42,11 @@ To get a local copy up and running follow these simple example steps.
 - Twitter: [@iamhawaabi](https://twitter.com/iamhawaabi)
 - LinkedIn: [Abeid Ahmed](https://www.linkedin.com/in/abeid-ahmed-b21882172/)
 
-👤 **taiwo2**
+👤 **john**
 
-- GitHub: [@taiwo2](https://github.com/taiwo2)
-- Twitter: [@TaiwoAdetona4](https://twitter.com/TaiwoAdetona4)
-- LinkedIn: [Taiwo Adetona](https://www.linkedin.com/in/taiwo-waliyullahi-adetona-988898180/)
+- GitHub: [@juduak\_](https://github.com/udberg_)
+- Twitter: [@juduak\_](https://twitter.com/juduak)
+- LinkedIn: [Uduak John](https://www.linkedin.com/in/uduak-john-090059105)
 
 ## 🤝 Contributing
 
@@ -56,7 +62,7 @@ Give a ⭐️ if you like this project!
 
 ## 📝 License
 
-Copyright 2020 Abeid Ahmed & Taiwo Adetona
+Copyright 2020 Abeid Ahmed & Uduak John
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
