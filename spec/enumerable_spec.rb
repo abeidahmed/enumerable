@@ -1,6 +1,7 @@
 require 'rspec'
 require_relative '../lib/enumerable'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe Enumerable do
   describe '#my_each' do
     let(:arr) { [1, 2, 3] }
@@ -194,3 +195,4 @@ RSpec.describe Enumerable do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength
